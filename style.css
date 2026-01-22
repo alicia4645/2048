@@ -18,7 +18,7 @@ body{
     grid-template:100px / auto auto auto auto; 
 }
 
-#tile{
+.tile{
     width: 90px;
     height: 90px;
     border: 5px solid#bbada0;
