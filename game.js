@@ -22,9 +22,11 @@ function startGame(){
 }
 
 function updateTile(tile, num){
-    tile.classList.remove(...tile.classList)
-    tile.classList.add('tile', `t${num}`)
-    if(num>0) tile.innerText = num
+    tile.className = "tile"
+    if(num>0) {
+        tile.classList.add(`t${num}`)
+        tile.innerText = num
+    }
 }
 
 startGame()
