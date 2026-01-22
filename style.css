@@ -88,3 +88,12 @@ body{
     position:absolute;
     top: 45%;
 }
+
+#restart{
+    width: 90px;
+    height:45px;
+    margin-top: 15px;
+    background-color: #cdc1b4;
+    border: 5px solid #bbada0;
+    font-weight: bold;
+}

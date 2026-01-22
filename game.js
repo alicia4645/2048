@@ -12,6 +12,9 @@ let board = [
 let newTile = false
 let hasWon = false
 
+const restart = document.getElementById('restart')
+restart.addEventListener('click', restartGame)
+
 function startGame(){
     for(let r=0; r<rows; r++){
         for(let c=0; c<columns; c++){
@@ -175,6 +178,32 @@ function winner(){
     const body = document.getElementsByTagName('body')[0]
     body.append(msg)
     window.removeEventListener('keyup', handleKeyUp)
+}
+
+function restartGame(){
+    let gameBoard = document.getElementById('board')
+    gameBoard.innerHTML = ''
+
+    board = [
+        [2,0,0,0],
+        [0,0,0,0],
+        [0,2,0,0],
+        [0,0,0,0]
+    ]
+    startGame()
+
+    score = 0
+    updateScore()
+
+    if(hasWon){
+        const body = document.getElementsByTagName('body')[0]
+        const winner = document.getElementById('winner')
+        body.removeChild(winner)
+        window.addEventListener('keyup', handleKeyUp)
+    }
+
+    newTile = false
+    hasWon = false
 }
 
 
