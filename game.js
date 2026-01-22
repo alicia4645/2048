@@ -43,7 +43,7 @@ addEventListener('keyup', (e) => {
             slideLeft()
             break
         case 'ArrowRight':
-            console.log("right")
+            slideRight()
             break   
         default : 
             break
@@ -74,6 +74,19 @@ function slideLeft(){
     for(let r=0; r<rows; r++){
         const row = slideTiles(board[r])
         board[r] = row
+
+        for(let c=0; c<columns; c++){
+            const tile = document.getElementById(`${r}-${c}`)
+            const num = board[r][c]
+            updateTile(tile,num)
+        }
+    }
+}
+
+function slideRight(){
+    for(let r=0; r<rows; r++){
+        const row = slideTiles(board[r].reverse())
+        board[r] = row.reverse()
 
         for(let c=0; c<columns; c++){
             const tile = document.getElementById(`${r}-${c}`)
