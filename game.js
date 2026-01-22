@@ -34,10 +34,10 @@ function updateTile(tile, num){
 addEventListener('keyup', (e) => {
     switch (e.key){
         case 'ArrowUp':
-            slideup()
+            slideUp()
             break
         case 'ArrowDown':
-            console.log("down")
+            slideDown()
             break
         case  'ArrowLeft':
             slideLeft()
@@ -96,11 +96,25 @@ function slideRight(){
     }
 }
 
-function slideup(){
+function slideUp(){
     for(let c=0; c<columns; c++){
         const col = [board[0][c],board[1][c],board[2][c],board[3][c]]
         const row = slideTiles(col)
-        
+
+        for(let r=0; r<rows; r++){
+            board[r][c] = row[r]
+            const tile = document.getElementById(`${r}-${c}`)
+            const num = board[r][c]
+            updateTile(tile,num)
+        }   
+    }
+}
+
+function slideDown(){
+    for(let c=0; c<columns; c++){
+        const col = [board[0][c],board[1][c],board[2][c],board[3][c]]
+        const row = slideTiles(col.reverse()).reverse()
+
         for(let r=0; r<rows; r++){
             board[r][c] = row[r]
             const tile = document.getElementById(`${r}-${c}`)
