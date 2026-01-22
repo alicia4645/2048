@@ -1,16 +1,17 @@
-const rows = 4;
-const columns = 4;
-let score = 0;
+const rows = 4
+const columns = 4
+let score = 0
 
 let board = [
-    [2,2,0,0],
-    [8,8,4,0],
-    [8,0,4,0],
+    [2,0,0,0],
+    [8,0,0,0],
+    [8,0,0,0],
     [0,0,0,0]
 ]
 
+let newTile = false
+
 function startGame(){
-    // <div id="x-y" class="tile t2">2</div>
     for(let r=0; r<rows; r++){
         for(let c=0; c<columns; c++){
             const num = board[r][c]
@@ -62,10 +63,12 @@ function slideTiles(row){
     }
 
     nRow = nRow.filter(num => num > 0 )
-    const diff = 4 - nRow.length
+    const diff =  4 - nRow.length
     for(let i=0; i<diff; i++){
         nRow.push(0)
     }
+
+    if(nRow.join() != row.join()) newTile = true
 
     return nRow
 }
@@ -81,6 +84,7 @@ function slideLeft(){
             updateTile(tile,num)
         }
     }
+    addTile()
 }
 
 function slideRight(){
@@ -94,6 +98,7 @@ function slideRight(){
             updateTile(tile,num)
         }
     }
+    addTile()
 }
 
 function slideUp(){
@@ -108,6 +113,7 @@ function slideUp(){
             updateTile(tile,num)
         }   
     }
+    addTile()
 }
 
 function slideDown(){
@@ -121,6 +127,27 @@ function slideDown(){
             const num = board[r][c]
             updateTile(tile,num)
         }   
+    }
+    addTile()
+}
+
+function addTile(){
+    if(newTile){
+        let found = false
+
+        while(!found){
+            const row = Math.floor(Math.random() * rows)
+            const col = Math.floor(Math.random() * columns)
+
+            if(board[row][col] === 0){
+                const tile = document.getElementById(`${row}-${col}`)
+                board[row][col] = 2
+                updateTile(tile, 2)
+                found = true
+            }
+        }
+
+        newTile = false
     }
 }
 
