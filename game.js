@@ -2,9 +2,9 @@ const rows = 4;
 const columns = 4;
 let score = 0;
 
-const board = [
-    [2,0,0,0],
-    [0,8,0,0],
+let board = [
+    [2,2,0,0],
+    [8,8,0,0],
     [0,0,0,0],
     [0,0,0,0]
 ]
@@ -24,6 +24,7 @@ function startGame(){
 
 function updateTile(tile, num){
     tile.className = "tile"
+    tile.innerText = ""
     if(num>0) {
         tile.classList.add(`t${num}`)
         tile.innerText = num
@@ -39,7 +40,7 @@ addEventListener('keyup', (e) => {
             console.log("down")
             break
         case  'ArrowLeft':
-            console.log("left")
+            slideLeft()
             break
         case 'ArrowRight':
             console.log("right")
@@ -57,8 +58,6 @@ function slideTiles(row){
             nRow[i] *= 2
             nRow[i+1] = 0
             score += nRow[i]
-            console.log(nRow)
-            console.log(score)
         }
     }
 
@@ -69,6 +68,19 @@ function slideTiles(row){
     }
 
     return nRow
+}
+
+function slideLeft(){
+    for(let r=0; r<rows; r++){
+        const row = slideTiles(board[r])
+        board[r] = row
+
+        for(let c=0; c<columns; c++){
+            const tile = document.getElementById(`${r}-${c}`)
+            const num = board[r][c]
+            updateTile(tile,num)
+        }
+    }
 }
 
 startGame()
