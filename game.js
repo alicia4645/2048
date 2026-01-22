@@ -59,6 +59,7 @@ function slideTiles(row){
             nRow[i] *= 2
             nRow[i+1] = 0
             score += nRow[i]
+            updateScore()
         }
     }
 
@@ -149,6 +150,11 @@ function addTile(){
 
         newTile = false
     }
+}
+
+function updateScore(){
+    let scoreDiv = document.getElementById("score")
+    scoreDiv.innerText = `Score: ${score}`
 }
 
 
