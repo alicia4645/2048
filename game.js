@@ -4,8 +4,8 @@ let score = 0;
 
 let board = [
     [2,2,0,0],
-    [8,8,0,0],
-    [0,0,0,0],
+    [8,8,4,0],
+    [8,0,4,0],
     [0,0,0,0]
 ]
 
@@ -34,7 +34,7 @@ function updateTile(tile, num){
 addEventListener('keyup', (e) => {
     switch (e.key){
         case 'ArrowUp':
-            console.log("up")
+            slideup()
             break
         case 'ArrowDown':
             console.log("down")
@@ -95,5 +95,20 @@ function slideRight(){
         }
     }
 }
+
+function slideup(){
+    for(let c=0; c<columns; c++){
+        const col = [board[0][c],board[1][c],board[2][c],board[3][c]]
+        const row = slideTiles(col)
+        
+        for(let r=0; r<rows; r++){
+            board[r][c] = row[r]
+            const tile = document.getElementById(`${r}-${c}`)
+            const num = board[r][c]
+            updateTile(tile,num)
+        }   
+    }
+}
+
 
 startGame()
