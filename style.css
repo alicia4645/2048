@@ -82,3 +82,9 @@ body{
     background-color: #edc22e;
     color: #f9f6f2;
 }
+
+#winner{
+    font-size: 50px;
+    position:absolute;
+    top: 45%;
+}
