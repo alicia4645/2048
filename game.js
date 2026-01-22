@@ -2,8 +2,8 @@ const rows = 4;
 const columns = 4;
 
 const board = [
-    [0,0,0,0],
-    [0,0,0,0],
+    [2,0,0,0],
+    [0,8,0,0],
     [0,0,0,0],
     [0,0,0,0]
 ]
@@ -15,11 +15,16 @@ function startGame(){
             const num = board[r][c]
             let tile = document.createElement("div")
             tile.id = `${r}-${c}`
-            tile.classList.add('tile', `t${num}`)
-            if(num>0) tile.innerText = num
+            updateTile(tile,num)
             document.getElementById('board').append(tile)
         }
     }
+}
+
+function updateTile(tile, num){
+    tile.classList.remove(...tile.classList)
+    tile.classList.add('tile', `t${num}`)
+    if(num>0) tile.innerText = num
 }
 
 startGame()
